@@ -1,0 +1,32 @@
+﻿<local:MainViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MatchRateAppliation">
+
+    <local:MainViewModel.Events>
+        <local:EventViewModel ID="1" Name="Strikeforce: Diaz vs. Daley" Date="2011-04-09"/>
+        <local:EventViewModel ID="2" Name="UFC 128: Rua vs. Jones" Date="2011-03-19"/>
+        <local:EventViewModel ID="3" Name="UFC Live: Sanchez vs. Kampmann" Date="2011-03-03"/>
+        <local:EventViewModel ID="4" Name="UFC 127: Penn vs. Fitch" Date="2011-02-27"/>
+    </local:MainViewModel.Events>
+    
+    <local:MainViewModel.SelectedEvent>
+        <local:EventViewModel ID="5" Name="UFC 129: Penn vs. Fitch" Date="2011-02-27">
+            <local:EventViewModel.Fights>
+                <local:FightViewModel ID="1" IpVote="0" Up="5" Down="2">
+                    <local:FightViewModel.Fighter1>
+                        <local:FighterViewModel Name="Test" Url="www.google.com"/>
+                    </local:FightViewModel.Fighter1>
+                    <local:FightViewModel.Fighter2>
+                        <local:FighterViewModel Name="Dummy" Url="www.google.com"/>
+                    </local:FightViewModel.Fighter2>
+                </local:FightViewModel>
+            </local:EventViewModel.Fights>
+        </local:EventViewModel>
+    </local:MainViewModel.SelectedEvent>
+    
+    <local:MainViewModel.Info>
+        <local:InfoViewModel InfoLine="Here is some info"/>
+    </local:MainViewModel.Info>
+    
+</local:MainViewModel>

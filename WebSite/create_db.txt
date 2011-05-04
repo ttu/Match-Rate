@@ -1,0 +1,122 @@
+DROP TABLE Fighter;
+DROP TABLE Event;
+DROP TABLE Fight;
+DROP TABLE Rating;
+
+CREATE TABLE Fighter(
+ID int PRIMARY KEY,
+Name varchar(255) NOT NULL,
+Url varchar(255)
+);
+
+CREATE TABLE Event(
+ID int PRIMARY KEY,
+Name varchar(255) NOT NULL,
+Date date NOT NULL,
+Url varchar(255)
+);
+
+CREATE TABLE Fight(
+ID int PRIMARY KEY,
+EventID int NOT NULL,
+Fighter_1_ID int NOT NULL,
+Fighter_2_ID int NOT NULL,
+CONSTRAINT Event_fk FOREIGN KEY(EventID)
+REFERENCES Event(ID),
+CONSTRAINT Fighter_1_fk FOREIGN KEY(Fighter_1_ID)
+REFERENCES Fighter(ID),
+CONSTRAINT Fighter_2_fk FOREIGN KEY(Fighter_2_ID)
+REFERENCES Fighter(ID)
+);
+
+CREATE TABLE Rating(
+IP nvarchar(255) NOT NULL,
+FightID int NOT NULL,
+Rate bool NOT NULL,
+Date datetime NOT NULL,
+PRIMARY KEY (IP, FightID),
+CONSTRAINT Fight_fk FOREIGN KEY(FightID)
+REFERENCES Fight(ID)
+);
+
+INSERT INTO Event VALUES (1, 'UFC 128: Rua vs. Jones', '2011-03-11', '');
+
+INSERT INTO Fighter VALUES (1,'Mauricio Rua', '');
+INSERT INTO Fighter VALUES (2,'Jon Jones', '');
+INSERT INTO Fighter VALUES (3,'Urijah Faber', '');
+INSERT INTO Fighter VALUES (4,'Eddie Wineland', '');
+INSERT INTO Fighter VALUES (5,'Jim Miller', '');
+INSERT INTO Fighter VALUES (6,'Kamal Shalorus', '');
+INSERT INTO Fighter VALUES (7,'Nate Marquardt', '');
+INSERT INTO Fighter VALUES (8,'Dan Miller', '');
+INSERT INTO Fighter VALUES (9,'Brendan Schaub', '');
+INSERT INTO Fighter VALUES (10,'Mirko Filipovic', '');
+
+INSERT INTO Fight VALUES (1, 1, 1, 2);
+INSERT INTO Fight VALUES (2, 1, 3, 4);
+INSERT INTO Fight VALUES (3, 1, 5, 6);
+INSERT INTO Fight VALUES (4, 1, 7, 8);
+INSERT INTO Fight VALUES (5, 1, 9, 10);
+
+INSERT INTO Event VALUES (2, 'Strikeforce: Diaz vs. Daley', '2011-04-09', '');
+
+INSERT INTO Fighter VALUES (11,'Nick Diaz', '');
+INSERT INTO Fighter VALUES (12,'Paul Daley', '');
+INSERT INTO Fighter VALUES (13,'Gilbert Melendez', '');
+INSERT INTO Fighter VALUES (14,'Tatsuya Kawajiri', '');
+INSERT INTO Fighter VALUES (15,'Gegard Mousasi', '');
+INSERT INTO Fighter VALUES (16,'Keith Jardine', '');
+INSERT INTO Fighter VALUES (17,'Shinya Aoki', '');
+INSERT INTO Fighter VALUES (18,'Lyle Beerbohm', '');
+
+INSERT INTO Fight VALUES (6, 2, 11, 12);
+INSERT INTO Fight VALUES (7, 2, 13, 14);
+INSERT INTO Fight VALUES (8, 2, 15, 16);
+INSERT INTO Fight VALUES (9, 2, 17, 18);
+
+
+INSERT INTO Event VALUES (3, 'UFC Live: Sanchez vs. Kampmann', '2011-03-03', '');
+
+INSERT INTO Fighter VALUES (19,'Diego Sanchez', '');
+INSERT INTO Fighter VALUES (20,'Martin Kampmann', '');
+INSERT INTO Fighter VALUES (21,'C.B. Dollaway', '');
+INSERT INTO Fighter VALUES (22,'Mark Muñoz', '');
+INSERT INTO Fighter VALUES (23,'Alessio Sakara', '');
+INSERT INTO Fighter VALUES (24,'Chris Weidman', '');
+
+INSERT INTO Fight VALUES (10, 3, 19, 20);
+INSERT INTO Fight VALUES (11, 3, 21, 22);
+INSERT INTO Fight VALUES (12, 3, 23, 24);
+
+INSERT INTO Event VALUES (4, 'UFC 127: Penn vs. Fitch', '2011-02-27', '');
+
+INSERT INTO Fighter VALUES (25,'B.J. Penn', '');
+INSERT INTO Fighter VALUES (26,'Jon Fitch', '');
+INSERT INTO Fighter VALUES (27,'Michael Bisping', '');
+INSERT INTO Fighter VALUES (28,'Jorge Rivera', '');
+INSERT INTO Fighter VALUES (29,'George Sotiropoulos', '');
+INSERT INTO Fighter VALUES (30,'Dennis Siver', '');
+
+INSERT INTO Fight VALUES (13, 4, 25, 26);
+INSERT INTO Fight VALUES (14, 4, 27, 28);
+INSERT INTO Fight VALUES (15, 4, 29, 30);
+
+
+INSERT INTO Event VALUES (5, 'UFC 129: St-Pierre vs. Shields', '2011-04-30' , 'http://en.wikipedia.org/wiki/UFC_129');
+
+INSERT INTO Fighter VALUES (31,'Georges St-Pierre', 'http://en.wikipedia.org/wiki/Georges_St-Pierre');
+INSERT INTO Fighter VALUES (32,'Jake Shields', 'http://en.wikipedia.org/wiki/Jake_Shields');
+INSERT INTO Fighter VALUES (33,'José Aldo', 'http://en.wikipedia.org/wiki/Jos%C3%A9_Aldo');
+INSERT INTO Fighter VALUES (34,'Mark Hominick', 'http://en.wikipedia.org/wiki/Mark_Hominick');
+INSERT INTO Fighter VALUES (35,'Randy Couture', 'http://en.wikipedia.org/wiki/Randy_Couture');
+INSERT INTO Fighter VALUES (36,'Lyoto Machida', 'http://en.wikipedia.org/wiki/Lyoto_Machida');
+INSERT INTO Fighter VALUES (37,'Vladimir Matyushenko', 'http://en.wikipedia.org/wiki/Vladimir_Matyushenko');
+INSERT INTO Fighter VALUES (38,'Jason Brilz', 'http://en.wikipedia.org/wiki/Jason_Brilz');
+INSERT INTO Fighter VALUES (39,'Mark Bocek', 'http://en.wikipedia.org/wiki/Mark_Bocek');
+INSERT INTO Fighter VALUES (40,'Ben Henderson', 'http://en.wikipedia.org/wiki/Ben_Henderson_(fighter)');
+
+INSERT INTO Fight VALUES (16, 5, 31, 32);
+INSERT INTO Fight VALUES (17, 5, 33, 34);
+INSERT INTO Fight VALUES (18, 5, 35, 36);
+INSERT INTO Fight VALUES (19, 5, 37, 38);
+INSERT INTO Fight VALUES (20, 5, 39, 40);

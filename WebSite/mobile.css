@@ -1,0 +1,235 @@
+body {
+    color: #222;            /* Foreground color used for text */
+    font-family: Helvetica; 
+    font-size: 14px;
+    margin: 0;              /* Amount of negative space around the outside of the body */
+    padding: 0;             /* Amount of negative space around the inside of the body */
+}
+
+/* This is main content */
+#main
+{
+	background-color: #ddd; /* Background color */
+}
+
+/* Define that element is in the middle */
+.middle
+{
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+/* Header of the page */
+#mainheader{
+	background-color: #000000;
+	width:100%;	
+	height: 50px;
+}
+
+#titleimage{
+	background: url(images/title.jpg) no-repeat;
+	background-position:center;
+	width:100%;	
+	height: 50px;
+}
+
+#mainheader h1 {
+    margin: 0;
+    padding: 0;
+	background-color: #ccc;
+    border-bottom: 1px solid #666;
+    color: black;
+   
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+	
+	text-shadow: 0px 1px 0px #fff;
+	text-transform:uppercase;
+	/*background-image: url(images/toolbar.png);*/
+	/*background-image: -moz-linear-gradient(-90deg, #ccc, #999);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+	background-image: gradient(linear, left top, left bottom, from(#ccc), to(#999));*/
+}
+
+#mainheader h1 a {
+    background-color: #ccc;
+    border-bottom: 1px solid #666;
+    color: #222;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+	
+	text-shadow: 0px 1px 0px #fff;
+	background-image: -moz-linear-gradient(-90deg, #ccc, #999);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+	background-image: gradient(linear, left top, left bottom, from(#ccc), to(#999));
+}
+
+div .event
+{
+background-color: #ddd;
+}
+
+div .header 
+{
+	padding-top:10px;
+	padding-bottom:10px;
+	width:100%;
+	border-bottom: 1px solid #666;
+	background-image: -moz-linear-gradient(-90deg, #666, #333);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+	background-image: gradient(linear, left top, left bottom, from(#ccc), to(#999));
+}
+
+.fight_voteup
+{
+	background-color: #CECECE;
+}
+
+.fight_voteup .like
+{
+	background-image:url('images/like_green.png');
+}
+
+.fight_votedown
+{
+	background-color: #CECECE;
+}
+
+.fight_votedown .dislike
+{
+	background-image:url('images/dislike_red.png');
+}
+
+
+/* Event main title */
+div.header .eventname
+{
+	padding-left:10px;
+	margin: 0;
+    color: #FFF;
+    font-size: 	16px;
+    font-weight: bold;
+    /*text-decoration: none;
+	text-shadow: 0px 1px 0px #fff;*/
+}
+
+div.header .eventdate
+{
+	padding-left:10px;
+	margin: 0;
+    color: #FFF;
+    font-size: 	10px;
+}
+
+/* This keeps up/down arrow on the right*/
+div.header img
+{
+	float:right;
+	padding-right:10px;
+	padding-top:5px;
+}
+
+
+/* No special colors for links in name of the fight */
+.fighttitle a { color: #000; text-decoration: none;}
+.fighttitle a:visited{color: #000; text-decoration: none;}
+.fighttitle a:active{color: #000; text-decoration: none;}
+.fighttitle a:hover {color: #000; text-decoration: none;}
+
+.like 
+{
+	background-image:url('images/like.png');
+	background-repeat: no-repeat;
+	padding-left:15px; /* Room for image */
+	padding-top: 5px;
+	float:right;
+	margin-right:30px;
+	width:50px;
+	color: green;
+}
+
+.dislike
+{
+	background-image:url('images/dislike.png');
+	background-repeat: no-repeat;
+	padding-left:15px; /* Room for image */
+	padding-top: 5px;
+	float:right;
+	padding-right:10px;
+	width:50px;
+	color: red;
+}
+
+/* Little padding to between images */
+.like  img
+{
+	padding-right:2px;
+}
+
+.dislike  img
+{
+	padding-right:2px;
+}
+
+/* Click count that is next to like / dislike image */
+.clickcount
+{
+	font-size: 11px;
+}
+
+ul {
+    list-style: none;
+    margin: 10px;
+    padding: 0;
+}
+
+/* Single fight element */
+ul li div {
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    color: #222222;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: -1px;
+    padding: 12px 10px;
+    text-decoration: none;
+}
+
+#menu.hide
+{
+	display:none;
+}
+
+ul.hide {
+    display: none;
+}
+
+/*  These generate rounded corners for first and last element*/
+ul li:first-child div{
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+	-moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+ul li:last-child div{
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
