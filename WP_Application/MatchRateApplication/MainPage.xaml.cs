@@ -19,44 +19,31 @@ namespace MatchRateAppliation
 
     public partial class MainPage : PhoneApplicationPage
     {
-        IRepository _repo;
-
         // Constructor
         public MainPage()
         {
             InitializeComponent();
-
-            _repo = new Repository(new WebRequestHandler());
-            _repo.EventsReady += new EventsDataReady(_repo_EventsReady);
-            _repo.EventReady += new EventDataReady(_repo_EventReady);
 
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
 
-        void _repo_EventsReady(Events events)
-        {
-            App.ViewModel.LoadEventsData(events.EventList);
-        }
-
-        void _repo_EventReady(Event eventData)
-        {
-            App.ViewModel.LoadSelectedEventData(eventData);
-        }
-
-        // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            _repo.LoadEvents();
+            App.ViewModel.LoadData();
         }
 
-        private void StackPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        // Commands can't be binded yet so have to use code behind
+        private void ExecuteCommand(object sender, ManipulationStartedEventArgs e)
         {
-            Pages.SelectedIndex = 1;
+            ICommand command = (ICommand)((StackPanel)sender).Tag;
 
-            int id = (int)((StackPanel)sender).Tag;
-            _repo.LoadEvent(id);
+            if (command != null)
+            {
+                command.Execute(null);
+                Pages.SelectedIndex = 1;
+            }
         }
     }
 }

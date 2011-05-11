@@ -11,9 +11,12 @@ using System.Windows.Shapes;
 
 namespace MatchRateAppliation
 {
-    public class FighterViewModel
+    public class FighterViewModel : ViewModelBase
     {      
         public string Name { get; set; }
-        public string Url { get; set; }      
+        public string Url { get; set; }
+
+        public FighterViewModel(IRepository repo):base(repo)
+        {}
     }
 }

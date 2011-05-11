@@ -14,11 +14,13 @@ using System.Collections.ObjectModel;
 
 namespace MatchRateAppliation
 {
-    public class EventViewModel: INotifyPropertyChanged
+    public class EventViewModel : ViewModelBase
     {
         private string _name;
+        private SelectCommand _selectCommand;
 
         public int ID { get; set; }
+
         public string Name 
         {
             get
@@ -45,15 +47,21 @@ namespace MatchRateAppliation
 
         public List<FightViewModel> Fights { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged(String propertyName)
+        public SelectCommand SelectEventCommand
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
+            get
             {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+                if (_selectCommand == null)
+                {
+                    _selectCommand = new SelectCommand(base.repo, this);
+                }
+
+                return _selectCommand;
             }
         }
+
+        public EventViewModel(IRepository repo)
+            : base(repo)
+        {}
     }
 }

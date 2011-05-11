@@ -60,25 +60,33 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=3.7.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IRepository.cs" />
+    <Compile Include="Commands\SelectCommand.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="MockWebRequestHandler.cs" />
+    <Resource Include="MyResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
     <Compile Include="UserControls\FightControl.xaml.cs">
       <DependentUpon>FightControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\EventControl.xaml.cs">
       <DependentUpon>EventControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IWebService.cs" />
+    <Compile Include="Interfaces\IWebHandler.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mapper.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Commands\VoteCommand.cs" />
     <Compile Include="WebRequestHandler.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Events.cs" />
@@ -90,7 +98,6 @@
     <Compile Include="ViewModels\FighterViewModel.cs" />
     <Compile Include="ViewModels\FightViewModel.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
-    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +135,8 @@
     </Content>
     <Resource Include="Images\dislike.png" />
     <Resource Include="Images\like.png" />
+    <Resource Include="Images\dislike_red.png" />
+    <Resource Include="Images\like_green.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

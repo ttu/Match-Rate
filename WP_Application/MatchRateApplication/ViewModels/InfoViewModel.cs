@@ -12,7 +12,7 @@ using System.ComponentModel;
 
 namespace MatchRateAppliation
 {
-    public class InfoViewModel: INotifyPropertyChanged
+    public class InfoViewModel : ViewModelBase
     {
         private string _infoLine;
 
@@ -32,14 +32,8 @@ namespace MatchRateAppliation
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public InfoViewModel(IRepository repo)
+            : base(repo)
+        {}
     }
 }

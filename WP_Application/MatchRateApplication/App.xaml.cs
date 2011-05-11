@@ -29,7 +29,7 @@ namespace MatchRateAppliation
             {
                 // Delay creation of the view model until necessary
                 if (viewModel == null)
-                    viewModel = new MainViewModel();
+                    viewModel = new MainViewModel(new Repository(new WebRequestHandler()));
 
                 return viewModel;
             }
@@ -83,7 +83,7 @@ namespace MatchRateAppliation
             // Ensure that application state is restored appropriately
             if (!App.ViewModel.IsDataLoaded)
             {
-                //App.ViewModel.LoadData();
+                App.ViewModel.LoadData();
             }
         }
 

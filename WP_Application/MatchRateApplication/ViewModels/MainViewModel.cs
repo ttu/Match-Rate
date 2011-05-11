@@ -15,30 +15,35 @@ using System.Collections.Generic;
 
 namespace MatchRateAppliation
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : ViewModelBase
     {
-        public MainViewModel()
-        {
-            this.Events = new ObservableCollection<EventViewModel>();
-            this.Info = new InfoViewModel();
-            this.Info.InfoLine = "Here comes some info about software. Maybe stats or info about events?";
-        }
+        private EventViewModel _selectedEvent;
+        private int _selectedEventID;
 
         public ObservableCollection<EventViewModel> Events { get; private set; }
 
         public InfoViewModel Info { get; set; }
 
-        private EventViewModel _selectedEvent;
         public EventViewModel SelectedEvent
         {
             get
             {
                 return _selectedEvent;
             }
-            set
+            private set
             {
                 _selectedEvent = value;
                 NotifyPropertyChanged("SelectedEvent");
+            }
+        }
+
+        public int SelectedEventID 
+        {
+            get 
+            { return _selectedEventID; }
+            set 
+            {
+                _selectedEventID = value;
             }
         }
 
@@ -48,17 +53,28 @@ namespace MatchRateAppliation
             private set;
         }
 
-        public void LoadData()
-        { 
-            // What to load in here?
+        public MainViewModel(IRepository repo)
+            : base(repo)
+        {
+
+            base.repo.EventsReady += new EventsDataReady(Repo_EventsReady);
+            base.repo.EventReady += new EventDataReady(Repo_EventReady);
+
+            this.Events = new ObservableCollection<EventViewModel>();
+            this.Info = new InfoViewModel(base.repo);
+            this.Info.InfoLine = "Here comes some info about software. Maybe stats or info about events?";
         }
 
-        // Actually no need for ViewModels to know Models, this could be dont outside
+        public void LoadData()
+        {
+            base.repo.LoadEvents();
+        }
+
         public void LoadEventsData(List<Event> eventList)
         {
             foreach (Event e in eventList)
             {
-                EventViewModel ev = e.ConvertToViewModel();
+                EventViewModel ev = e.ConvertToViewModel(base.repo);
                 Events.Add(ev);
             }
 
@@ -68,18 +84,18 @@ namespace MatchRateAppliation
 
         public void LoadSelectedEventData(Event selectedEvent)
         {
-            EventViewModel ev = selectedEvent.ConvertToViewModel();
+            EventViewModel ev = selectedEvent.ConvertToViewModel(base.repo);
             SelectedEvent = ev;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
+        void Repo_EventsReady(Events events)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+           LoadEventsData(events.EventList);
+        }
+
+        void Repo_EventReady(Event eventData)
+        {
+           LoadSelectedEventData(eventData);
         }
     }
 }

@@ -30,5 +30,13 @@ namespace MatchRateAppliation
         {
             InitializeComponent();
         }
+
+        private void ExecuteCommand(object sender, ManipulationStartedEventArgs e)
+        {
+            ICommand cmd = (ICommand)((Image)sender).Tag;
+
+            if (cmd != null)
+                cmd.Execute(null);
+        }
     }
 }

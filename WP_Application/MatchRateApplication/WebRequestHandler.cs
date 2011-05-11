@@ -22,9 +22,13 @@ namespace MatchRateAppliation
         WebResponse response;
         HttpWebRequest request;
 
+        private string _eventsUrl = "http://tomi.viuhka.fi/MatchRate/getevents.php";
+        private string _eventUrl = "http://tomi.viuhka.fi/MatchRate/getevent.php?Id={0}";
+        private string _voteUrl = "http://tomi.viuhka.fi/MatchRate/vote.php?Id={0}&Vote={1}";
+
         public void GetEventsJSON()
         {
-            request = (HttpWebRequest)WebRequest.Create("http://tomi.viuhka.fi/MatchRate/getevents.php");
+            request = (HttpWebRequest)WebRequest.Create(_eventsUrl);
             request.Method = "GET";
 
             BackgroundWorker bgw = new BackgroundWorker();
@@ -36,7 +40,7 @@ namespace MatchRateAppliation
 
         public void GetEventJSON(int id)
         {
-            request = (HttpWebRequest)WebRequest.Create("http://tomi.viuhka.fi/MatchRate/getevent.php?Id=" + id);
+            request = (HttpWebRequest)WebRequest.Create(string.Format(_eventUrl, id));
             request.Method = "GET";
 
             BackgroundWorker bgw = new BackgroundWorker();
@@ -48,7 +52,14 @@ namespace MatchRateAppliation
 
         public void SendFightVote(int id, bool up)
         {
-            // Do nada
+            request = (HttpWebRequest)WebRequest.Create(string.Format(_voteUrl, id, up ? 1 : 0 ));
+            request.Method = "GET";
+
+            // For now no reply from vote page
+            BackgroundWorker bgw = new BackgroundWorker();
+            bgw.DoWork += new DoWorkEventHandler(bgw_DoWork);
+
+            bgw.RunWorkerAsync();
         }
 
         private void getResponse(IAsyncResult result)

@@ -14,9 +14,9 @@ namespace MatchRateAppliation
 {
     public static class Mapper
     {
-        public static EventViewModel ConvertToViewModel(this Event current)
+        public static EventViewModel ConvertToViewModel(this Event current, IRepository repo)
         {
-            EventViewModel retVal = new EventViewModel() { ID = current.ID, Name = current.Name, Date = current.Date };
+            EventViewModel retVal = new EventViewModel(repo) { ID = current.ID, Name = current.Name, Date = current.Date };
 
             if (current.Fights != null)
             {
@@ -24,7 +24,7 @@ namespace MatchRateAppliation
 
                 foreach(Fight f in current.Fights)
                 {
-                    FightViewModel fight = f.ConvertToViewModel();
+                    FightViewModel fight = f.ConvertToViewModel(repo);
                     retVal.Fights.Add(fight);
                 }
             }
@@ -32,18 +32,18 @@ namespace MatchRateAppliation
             return retVal;
         }
 
-        public static FightViewModel ConvertToViewModel(this Fight current)
+        public static FightViewModel ConvertToViewModel(this Fight current, IRepository repo)
         {
-            FightViewModel retVal = new FightViewModel() {   ID = current.ID, IpVote = current.IpVote, Up = current.Up, Down = current.Down };
-            retVal.Fighter1 = current.Fighter1.ConvertToViewModel();
-            retVal.Fighter2 = current.Fighter2.ConvertToViewModel();
+            FightViewModel retVal = new FightViewModel(repo) {   ID = current.ID, IpVote = current.IpVote, Up = current.Up, Down = current.Down };
+            retVal.Fighter1 = current.Fighter1.ConvertToViewModel(repo);
+            retVal.Fighter2 = current.Fighter2.ConvertToViewModel(repo);
 
             return retVal;
         }
 
-        public static FighterViewModel ConvertToViewModel(this Fighter current)
+        public static FighterViewModel ConvertToViewModel(this Fighter current, IRepository repo)
         {
-            FighterViewModel retVal = new FighterViewModel() { Name = current.Name, Url = current.Url  };
+            FighterViewModel retVal = new FighterViewModel(repo) { Name = current.Name, Url = current.Url  };
 
             return retVal;
         }

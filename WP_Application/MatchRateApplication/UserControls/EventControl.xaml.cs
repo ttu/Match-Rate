@@ -21,8 +21,6 @@ namespace MatchRateAppliation
         public EventControl()
         {
             InitializeComponent();
-            //EventName.SetBinding(TextBlock.TextProperty, new Binding() { Source = this, Path = new PropertyPath("EventSource") });
-
         }
     }
 }

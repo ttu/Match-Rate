@@ -33,6 +33,21 @@ namespace MatchRateAppliation
             _webHandler.SelectedJsonReady += new JsonData(webHandler_SelectedJsonReady);
         }
 
+        public void LoadEvents()
+        {
+            _webHandler.GetEventsJSON();
+        }
+
+        public void LoadEvent(int id)
+        {
+            _webHandler.GetEventJSON(id);
+        }
+
+        public void Vote(int fightID, bool up)
+        {
+            _webHandler.SendFightVote(fightID, up);
+        }
+
         void webHandler_EventsJsonReady(string json)
         {
             byte[] byteArray = Encoding.Unicode.GetBytes(json);
@@ -58,16 +73,6 @@ namespace MatchRateAppliation
 
             if (EventReady != null)
                 EventReady(requestedEvents.EventList[0]);
-        }
-
-        public void LoadEvents()
-        {
-            _webHandler.GetEventsJSON();
-        }
-
-        public void LoadEvent(int id)
-        {
-            _webHandler.GetEventJSON(id);
         }
     }
 }
