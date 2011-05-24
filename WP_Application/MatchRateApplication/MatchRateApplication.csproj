@@ -67,7 +67,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Commands\SelectCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="MockWebRequestHandler.cs" />
     <Resource Include="MyResourceDictionary.xaml">
@@ -86,7 +86,6 @@
     </Compile>
     <Compile Include="Mapper.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Commands\VoteCommand.cs" />
     <Compile Include="WebRequestHandler.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Events.cs" />
@@ -133,10 +132,18 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Images\dislike.png" />
-    <Resource Include="Images\like.png" />
-    <Resource Include="Images\dislike_red.png" />
-    <Resource Include="Images\like_green.png" />
+    <Content Include="Images\dislike.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\like.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\dislike_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\like_green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

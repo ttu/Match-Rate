@@ -17,7 +17,11 @@ namespace MatchRateAppliation
     public class EventViewModel : ViewModelBase
     {
         private string _name;
-        private SelectCommand _selectCommand;
+        private ICommand _selectCommand;
+
+        public EventViewModel(IRepository repo)
+            : base(repo)
+        { }
 
         public int ID { get; set; }
 
@@ -47,21 +51,29 @@ namespace MatchRateAppliation
 
         public List<FightViewModel> Fights { get; set; }
 
-        public SelectCommand SelectEventCommand
+        public ICommand SelectEventCommand
         {
             get
             {
                 if (_selectCommand == null)
                 {
-                    _selectCommand = new SelectCommand(base.repo, this);
+                    _selectCommand = new RelayCommand(param => this.LoadEvent(), param => this.CanExecute());
                 }
 
                 return _selectCommand;
             }
         }
 
-        public EventViewModel(IRepository repo)
-            : base(repo)
-        {}
+        public void LoadEvent()
+        {     
+            base.repo.LoadEvent(this.ID);
+        }
+
+        public bool CanExecute()
+        {
+            return ID > 0;
+        }
+
+      
     }
 }

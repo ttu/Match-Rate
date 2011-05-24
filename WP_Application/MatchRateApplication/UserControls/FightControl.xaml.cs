@@ -19,6 +19,7 @@ namespace MatchRateAppliation
                                        typeof(FightViewModel),
                                        typeof(FightControl),
                                        new PropertyMetadata(null));
+                                       //new PropertyMetadata(null, new PropertyChangedCallback(FightControl.OnUserControlTextPropertyChanged)));
 
         public FightViewModel FightSource
         {

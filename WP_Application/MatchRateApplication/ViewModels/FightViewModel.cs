@@ -15,10 +15,18 @@ namespace MatchRateAppliation
     public class FightViewModel : ViewModelBase
     {      
         private int _ipvote;
-        private VoteCommand _voteUpCommand;
-        private VoteCommand _voteDownCommand;
+        private ICommand _voteUpCommand;
+        private ICommand _voteDownCommand;
+
+        public FightViewModel(IRepository repo)
+            : base(repo)
+        { }
 
         public int ID { get; set; }
+        public FighterViewModel Fighter1 { get; set; }
+        public FighterViewModel Fighter2 { get; set; }
+        public int Up { get; set; }
+        public int Down { get; set; }
 
         public int IpVote 
         {
@@ -26,15 +34,11 @@ namespace MatchRateAppliation
             set 
             {
                 _ipvote = value;
+                NotifyPropertyChanged("IpVote");
                 NotifyPropertyChanged("ImageUpSource");
                 NotifyPropertyChanged("ImageDownSource");
             } 
         }
-
-        public FighterViewModel Fighter1 { get; set; }
-        public FighterViewModel Fighter2 { get; set; }
-        public int Up { get; set; }
-        public int Down { get; set; }
 
         public string Title
         {
@@ -61,34 +65,41 @@ namespace MatchRateAppliation
             }
         }
 
-        public VoteCommand VoteUpCommand
+        public ICommand VoteUpCommand
         {
             get
             {
                 if (_voteUpCommand == null)
                 {
-                    _voteUpCommand = new VoteCommand(base.repo, this, true);
+                    _voteUpCommand = new RelayCommand(param => this.Vote(true), param => this.CanExecute());
                 }
 
                 return _voteUpCommand;
             }
         }
 
-        public VoteCommand VoteDownCommand
+        public ICommand VoteDownCommand
         {
             get
             {
                 if (_voteDownCommand == null)
                 {
-                    _voteDownCommand = new VoteCommand(base.repo, this, false);
+                    _voteDownCommand = new RelayCommand(param => this.Vote(false), param => this.CanExecute());
                 }
 
                 return _voteDownCommand;
             }
         }
 
-        public FightViewModel(IRepository repo)
-            : base(repo)
-        {}
+        public void Vote(bool up)
+        {
+            base.repo.Vote(ID, up);
+            //IpVote = up ? 1 : 0;
+        }
+
+        public bool CanExecute()
+        {
+            return ID > 0 && IpVote == -1;
+        }
     }
 }
