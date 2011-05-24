@@ -9,19 +9,20 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="69" d:DesignWidth="461">
 
-    <!--<UserControl.Resources>
+   <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../MyResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </UserControl.Resources>-->
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Tag="{Binding Path=Fight.ID}" Background="{StaticResource PhoneChromeBrush}">
-        <TextBlock Text="{Binding Path=Fighter1.Name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Margin="12,0,125,35" FontSize="28" />
-        <TextBlock Text="{Binding Path=Fighter2.Name}" FontSize="28" Margin="12,35,125,0" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap" />
-        <Image Height="67" HorizontalAlignment="Center" Margin="347,0,61,2" Name="imageUp" Stretch="None" VerticalAlignment="Center" Width="53" Source="/MatchRateAppliation;component/Images/like.png" Tag="{Binding VoteUpCommand}" ManipulationStarted="ExecuteCommand" />
-        <Image Height="67" HorizontalAlignment="Center" Margin="400,2,0,0" Name="imageDown" Stretch="None" VerticalAlignment="Center" Width="49" Source="/MatchRateAppliation;component/Images/dislike.png" Tag="{Binding VoteDownCommand}" ManipulationStarted="ExecuteCommand" />
+        <!--<TextBlock Text="{Binding IpVote}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="28" Margin="0,0,416,0" />-->
+        <TextBlock Text="{Binding Fighter1.Name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Margin="12,0,125,35" FontSize="28" />
+        <TextBlock Text="{Binding Fighter2.Name}" FontSize="28" Margin="12,35,125,0" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap" />
+        <Image Height="67" HorizontalAlignment="Center" Margin="347,0,61,2" Name="imageUp" Stretch="None" VerticalAlignment="Center" Width="53" Source="{StaticResource ImageLike}" Tag="{Binding VoteUpCommand}" ManipulationStarted="ExecuteCommand" />
+        <Image Height="67" HorizontalAlignment="Center" Margin="400,2,0,0" Name="imageDown" Stretch="None" VerticalAlignment="Center" Width="49" Source="{StaticResource ImageDislike}" Tag="{Binding VoteDownCommand}" ManipulationStarted="ExecuteCommand" />
     </Grid>
     
 </UserControl>
